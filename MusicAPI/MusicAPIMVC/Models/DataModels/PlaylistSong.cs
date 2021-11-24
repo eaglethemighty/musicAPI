@@ -6,6 +6,7 @@ namespace MusicAPIMVC.Models
     public class PlaylistSong
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [ForeignKey("Song")]
         public int SongId { get; set; }
