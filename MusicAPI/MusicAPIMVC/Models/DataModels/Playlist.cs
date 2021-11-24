@@ -6,17 +6,19 @@ namespace MusicAPIMVC.Models
     public class Playlist
     {
         [Key]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }
+
+        public IList<PlaylistSong>? PlaylistSongs { get; set; }
 
         [NotMapped]
         public TimeSpan? Length
         {
             get
             {
-                return Songs is null ? new TimeSpan(0, 0, 0) : new TimeSpan(Songs.Sum(song => song.Length.Ticks));
+                return PlaylistSongs is null ? new TimeSpan(0, 0, 0) : new TimeSpan(PlaylistSongs.Sum(song => song.Song.Length.Ticks));
             }
 
         }
@@ -26,11 +28,9 @@ namespace MusicAPIMVC.Models
         {
             get
             {
-                return Songs is null ? 0 : Songs.Count;
+                return PlaylistSongs is null ? 0 : PlaylistSongs.Count;
             }
         }
-
-        public IList<Song>? Songs { get; set; }
 
     }
 }
