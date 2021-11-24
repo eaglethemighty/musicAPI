@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicAPIMVC.Data;
 
@@ -11,9 +12,10 @@ using MusicAPIMVC.Data;
 namespace MusicAPIMVC.Migrations
 {
     [DbContext(typeof(MusicDBAccess))]
-    partial class MusicDBAccessModelSnapshot : ModelSnapshot
+    [Migration("20211124160824_AddGenerationOfKeys")]
+    partial class AddGenerationOfKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,7 +247,7 @@ namespace MusicAPIMVC.Migrations
                         new
                         {
                             Id = 1,
-                            AlbumId = 1,
+                            AlbumId = 2,
                             GenreId = 2,
                             Length = new TimeSpan(0, 0, 5, 13, 0),
                             Name = "Stolen Dance"
@@ -253,7 +255,7 @@ namespace MusicAPIMVC.Migrations
                         new
                         {
                             Id = 2,
-                            AlbumId = 2,
+                            AlbumId = 1,
                             GenreId = 1,
                             Length = new TimeSpan(0, 0, 8, 0, 0),
                             Name = "Cinderella"
