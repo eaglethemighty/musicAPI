@@ -7,14 +7,10 @@ namespace MusicAPIMVC.Repository
 {
     public class ArtistRepository : IRepositoryCRUD<Artist>
     {
-<<<<<<< Updated upstream
-=======
         public ArtistRepository(MusicDBAccess context)
         {
             _context = context;
         }
-
->>>>>>> Stashed changes
         private MusicDBAccess _context { get; set; }
         public void Add(Artist obj)
         {
