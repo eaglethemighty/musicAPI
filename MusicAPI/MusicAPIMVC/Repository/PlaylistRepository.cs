@@ -7,6 +7,14 @@ namespace MusicAPIMVC.Repository
 {
     public class PlaylistRepository : IRepositoryCRUD<Playlist>
     {
+<<<<<<< Updated upstream
+=======
+        public PlaylistRepository(MusicDBAccess context)
+        {
+            _context = context;
+        }
+
+>>>>>>> Stashed changes
         private MusicDBAccess _context { get; set; }
         public void Add(Playlist obj)
         {
