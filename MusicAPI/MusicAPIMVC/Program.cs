@@ -21,6 +21,7 @@ builder.Services.AddScoped<IRepositoryCRUD<Artist>, ArtistRepository>();
 builder.Services.AddScoped<IRepositoryCRUD<Genre>, GenreRepository>();
 builder.Services.AddScoped<IRepositoryCRUD<Playlist>, PlaylistRepository>();
 builder.Services.AddScoped<IRepositoryCRUD<Song>, SongRepository>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
