@@ -6,6 +6,6 @@ namespace MusicAPIMVC.Models.DTOs.Genre
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<SongDTO>? AllSongs { get; set; }
+        public ICollection<SongReadDTO>? AllSongs { get; set; }
     }
 }
