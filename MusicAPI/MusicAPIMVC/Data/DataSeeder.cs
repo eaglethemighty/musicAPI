@@ -125,7 +125,7 @@ namespace MusicAPIMVC.Data
                 Id = 1,
                 Name = "Stolen Dance",
                 AlbumId = album1.Id,
-                GenreId = genre2.Id,
+                GenreId = genre1.Id,
                 Length = new TimeSpan(0, 5, 13)
             };
 
@@ -134,7 +134,7 @@ namespace MusicAPIMVC.Data
                 Id = 2,
                 Name = "Cinderella",
                 AlbumId = album2.Id,
-                GenreId = genre1.Id,
+                GenreId = genre2.Id,
                 Length = new TimeSpan(0, 8, 0)
             };
 
