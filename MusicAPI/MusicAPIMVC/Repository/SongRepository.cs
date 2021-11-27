@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using MusicAPIMVC.Data;
 using MusicAPIMVC.Models;
+using MusicAPIMVC.Models.DTOs.Song;
 using MusicAPIMVC.Repository.Interfaces;
 
 namespace MusicAPIMVC.Repository

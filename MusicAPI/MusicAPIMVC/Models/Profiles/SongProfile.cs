@@ -7,7 +7,11 @@ namespace MusicAPIMVC.Models.Profiles
     {
         public SongProfile()
         {
-            CreateMap<Song, SongDTO>();
+            CreateMap<Song, SongReadDTO>()
+                .ForMember(dto => dto.ArtistStageName, opt => opt.MapFrom(song => song.Album.Artist.StageName))
+                .ForMember(dto => dto.AlbumTitle, opt => opt.MapFrom(song => song.Album.Title));
+
+            CreateMap<SongCreateDTO, Song>();
         }
     }
 }
