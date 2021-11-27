@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 
 string ConnectionString = builder.Configuration.GetConnectionString("MusicDBAccess");
 
-builder.Services.AddDbContext<MusicDBAccess>(options => options.UseSqlServer(ConnectionString));
+builder.Services.AddDbContext<MusicDBAccess>(options => options.UseSqlServer(ConnectionString, builder =>{ builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);}));
 builder.Services.AddScoped<IRepositoryCRUD<Album>, AlbumRepository>();
 builder.Services.AddScoped<IRepositoryCRUD<Artist>, ArtistRepository>();
 builder.Services.AddScoped<IRepositoryCRUD<Genre>, GenreRepository>();

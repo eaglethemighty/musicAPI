@@ -8,7 +8,7 @@ using MusicAPIMVC.Repository.Interfaces;
 
 namespace MusicAPIMVC.Controllers
 {
-    [Route("api/[playlistitem]")]
+    [Route("api/playlistitem")]
     [ApiController]
     public class PlaylistItemsController : ControllerBase
     {

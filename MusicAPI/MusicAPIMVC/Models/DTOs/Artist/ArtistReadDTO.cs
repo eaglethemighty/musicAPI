@@ -6,6 +6,6 @@
         public string StageName { get; set; }
         public int NumberOfAlbums;
         public int NumberOfSongs;
-/*        public IList<AlbumReadDTO>? Albums { get; set; }*/
+        public IList<ArtistReadAlbumDTO>? Albums { get; set; }
     }
 }
