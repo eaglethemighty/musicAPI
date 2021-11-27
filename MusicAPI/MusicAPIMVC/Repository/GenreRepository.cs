@@ -69,7 +69,7 @@ namespace MusicAPIMVC.Repository
         {
             return await Task.Run(
                 () => _context.Genres
-                .Include(genre => genre.AllSongs)
+                .Include(genre => genre.AllSongs).ThenInclude(song => song.Album).ThenInclude(album => album.Artist)
                 .ToList());
         }
 
