@@ -61,7 +61,7 @@ namespace MusicAPIMVC.Repository
         public IEnumerable<Artist> GetAll()
         {
             return _context.Artists
-                .Include(artist => artist.Albums)
+                .Include(artist => artist.Albums).ThenInclude(album => album.Songs)
                 .ToList();
         }
 
@@ -69,7 +69,7 @@ namespace MusicAPIMVC.Repository
         {
             return await Task.Run(
                 () => _context.Artists
-                .Include(artist => artist.Albums)
+                .Include(artist => artist.Albums).ThenInclude(album => album.Songs)
                 .ToList());
         }
 
