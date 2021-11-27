@@ -22,21 +22,21 @@ namespace MusicAPIMVC.Controllers
         private readonly IMapper _mapper;
 
         [HttpGet]
-        public ActionResult<IEnumerable<GenreReadDTO>> GetAllGenres()
+        public async Task<ActionResult<IEnumerable<GenreReadDTO>>> GetAllGenres()
         {
-            List<Genre> AllGenres = _GenreRepository.GetAll().ToList();
+            List<Genre> AllGenres = (await _GenreRepository.GetAllAsync()).ToList();
 
             return Ok(_mapper.Map<List<GenreReadDTO>>(AllGenres));
         }
 
         [HttpGet("{id}", Name = "GetSpecificGenre")]
-        public ActionResult<IEnumerable<GenreReadDTO>> GetSpecificGenre(int id)
+        public async Task<ActionResult<IEnumerable<GenreReadDTO>>> GetSpecificGenre(int id)
         {
             Genre Genre = new();
 
             try
             {
-                Genre = _GenreRepository.GetById(id);
+                Genre = await _GenreRepository.GetByIdAsync(id);
             }
             catch (InvalidOperationException)
             {
@@ -51,10 +51,10 @@ namespace MusicAPIMVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult<GenreReadDTO> CreateGenre(GenreCreateDTO genreDTO)
+        public async Task<ActionResult<GenreReadDTO>> CreateGenre(GenreCreateDTO genreDTO)
         {
             var Genre = _mapper.Map<Genre>(genreDTO);
-            _GenreRepository.Add(Genre);
+            await _GenreRepository.AddAsync(Genre);
 
             var GenreRead = _mapper.Map<GenreReadDTO>(Genre);
 
@@ -62,12 +62,12 @@ namespace MusicAPIMVC.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateGenre(int id, GenreUpdateDTO genreDTO)
+        public async Task<ActionResult> UpdateGenre(int id, GenreUpdateDTO genreDTO)
         {
             Genre genre;
             try
             {
-                genre = _GenreRepository.GetById(id);
+                genre = await _GenreRepository.GetByIdAsync(id);
             }
             catch (Exception)
             {
@@ -75,17 +75,17 @@ namespace MusicAPIMVC.Controllers
             }
 
             var GenreUpdated = _mapper.Map(genreDTO, genre);
-            _GenreRepository.Update(GenreUpdated);
+            await _GenreRepository.UpdateAsync(GenreUpdated);
             return NoContent();
         }
 
         [HttpPatch("{id}")]
-        public ActionResult PartialGenreUpdate(int id, JsonPatchDocument<GenreUpdateDTO> patchDocument)
+        public async Task<ActionResult> PartialGenreUpdate(int id, JsonPatchDocument<GenreUpdateDTO> patchDocument)
         {
             Genre genre;
             try
             {
-                genre = _GenreRepository.GetById(id);
+                genre = await _GenreRepository.GetByIdAsync(id);
             }
             catch (Exception)
             {
@@ -100,24 +100,24 @@ namespace MusicAPIMVC.Controllers
                 return ValidationProblem(ModelState);
             }
 
-            _GenreRepository.Update(_mapper.Map<Genre>(GenreToPatch));
+            await _GenreRepository.UpdateAsync(_mapper.Map<Genre>(GenreToPatch));
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteGenreByID(int id)
+        public async Task<ActionResult> DeleteGenreByID(int id)
         {
             Genre genre;
             try
             {
-                genre = _GenreRepository.GetById(id);
+                genre = await _GenreRepository.GetByIdAsync(id);
             }
             catch (Exception)
             {
                 return NotFound();
             }
 
-            _GenreRepository.Delete(genre);
+            await _GenreRepository.DeleteAsync(genre);
             return NoContent();
         }
     }
