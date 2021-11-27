@@ -3,6 +3,7 @@ using MusicAPIMVC.Data;
 using MusicAPIMVC.Models;
 using MusicAPIMVC.Repository;
 using MusicAPIMVC.Repository.Interfaces;
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,11 @@ builder.Services.AddScoped<IRepositoryCRUD<Genre>, GenreRepository>();
 builder.Services.AddScoped<IRepositoryCRUD<Playlist>, PlaylistRepository>();
 builder.Services.AddScoped<IRepositoryCRUD<Song>, SongRepository>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddControllers().AddNewtonsoftJson(
+    s =>
+    {
+        s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+    });
 
 var app = builder.Build();
 
