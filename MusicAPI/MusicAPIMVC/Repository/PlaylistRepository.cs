@@ -61,8 +61,8 @@ namespace MusicAPIMVC.Repository
         public IEnumerable<Playlist> GetAll()
         {
             return _context.Playlists
-                .Include(Playlist => Playlist.PlaylistSongs)
-                .ThenInclude(psongs => psongs.Song)
+                .Include(Playlist => Playlist.PlaylistSongs).ThenInclude(psongs => psongs.Song).ThenInclude(song => song.Genre)
+                .Include(Playlist => Playlist.PlaylistSongs).ThenInclude(psongs => psongs.Song).ThenInclude(song => song.Album).ThenInclude(album => album.Artist)
                 .ToList();
         }
 
@@ -70,8 +70,8 @@ namespace MusicAPIMVC.Repository
         {
             return await Task.Run(
                 () => _context.Playlists
-                .Include(Playlist => Playlist.PlaylistSongs)
-                .ThenInclude(psongs => psongs.Song)
+                .Include(Playlist => Playlist.PlaylistSongs).ThenInclude(psongs => psongs.Song).ThenInclude(song => song.Genre)
+                .Include(Playlist => Playlist.PlaylistSongs).ThenInclude(psongs => psongs.Song).ThenInclude(song => song.Album).ThenInclude(album => album.Artist)
                 .ToList());
         }
 

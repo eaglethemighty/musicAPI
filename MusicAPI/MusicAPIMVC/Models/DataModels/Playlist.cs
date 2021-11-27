@@ -12,7 +12,7 @@ namespace MusicAPIMVC.Models
         [Required]
         public string Name { get; set; }
 
-        public IList<PlaylistSong>? PlaylistSongs { get; set; }
+        public IList<PlaylistItem>? PlaylistSongs { get; set; }
 
         [NotMapped]
         public TimeSpan? Length

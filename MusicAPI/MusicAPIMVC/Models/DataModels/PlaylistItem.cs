@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MusicAPIMVC.Models
 {
-    public class PlaylistSong
+    public class PlaylistItem
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -14,5 +14,6 @@ namespace MusicAPIMVC.Models
         [ForeignKey("Playlist")]
         public int PlaylistId { get; set; }
         public Playlist Playlist { get; set; }
+        public int SequenceInPlaylist { get; set; }
     }
 }
