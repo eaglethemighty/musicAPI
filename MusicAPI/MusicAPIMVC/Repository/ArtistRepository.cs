@@ -7,14 +7,10 @@ namespace MusicAPIMVC.Repository
 {
     public class ArtistRepository : IRepositoryCRUD<Artist>
     {
-<<<<<<< Updated upstream
-=======
         public ArtistRepository(MusicDBAccess context)
         {
             _context = context;
         }
-
->>>>>>> Stashed changes
         private MusicDBAccess _context { get; set; }
         public void Add(Artist obj)
         {
@@ -65,7 +61,7 @@ namespace MusicAPIMVC.Repository
         public IEnumerable<Artist> GetAll()
         {
             return _context.Artists
-                .Include(artist => artist.Albums)
+                .Include(artist => artist.Albums).ThenInclude(album => album.Songs)
                 .ToList();
         }
 
@@ -73,7 +69,7 @@ namespace MusicAPIMVC.Repository
         {
             return await Task.Run(
                 () => _context.Artists
-                .Include(artist => artist.Albums)
+                .Include(artist => artist.Albums).ThenInclude(album => album.Songs)
                 .ToList());
         }
 

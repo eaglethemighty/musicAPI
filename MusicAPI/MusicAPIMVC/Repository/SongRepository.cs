@@ -1,20 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using MusicAPIMVC.Data;
 using MusicAPIMVC.Models;
+using MusicAPIMVC.Models.DTOs.Song;
 using MusicAPIMVC.Repository.Interfaces;
 
 namespace MusicAPIMVC.Repository
 {
     public class SongRepository : IRepositoryCRUD<Song>
     {
-<<<<<<< Updated upstream
-=======
         public SongRepository(MusicDBAccess context)
         {
             _context = context;
         }
-
->>>>>>> Stashed changes
         private MusicDBAccess _context { get; set; }
         public void Add(Song obj)
         {
