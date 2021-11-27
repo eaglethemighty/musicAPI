@@ -12,6 +12,7 @@ namespace MusicAPIMVC.Models.Profiles
                 .ForMember(dto => dto.AlbumTitle, opt => opt.MapFrom(song => song.Album.Title));
 
             CreateMap<SongCreateDTO, Song>();
+            CreateMap<SongUpdateDTO, Song>();
         }
     }
 }
