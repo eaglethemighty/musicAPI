@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicAPIMVC.Data;
 
@@ -11,9 +12,10 @@ using MusicAPIMVC.Data;
 namespace MusicAPIMVC.Migrations
 {
     [DbContext(typeof(MusicDBAccess))]
-    partial class MusicDBAccessModelSnapshot : ModelSnapshot
+    [Migration("20211127182525_AddPlaylistSequence")]
+    partial class AddPlaylistSequence
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,7 +191,7 @@ namespace MusicAPIMVC.Migrations
                     b.ToTable("Playlists");
                 });
 
-            modelBuilder.Entity("MusicAPIMVC.Models.PlaylistItem", b =>
+            modelBuilder.Entity("MusicAPIMVC.Models.PlaylistSong", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -298,7 +300,7 @@ namespace MusicAPIMVC.Migrations
                     b.Navigation("Artist");
                 });
 
-            modelBuilder.Entity("MusicAPIMVC.Models.PlaylistItem", b =>
+            modelBuilder.Entity("MusicAPIMVC.Models.PlaylistSong", b =>
                 {
                     b.HasOne("MusicAPIMVC.Models.Playlist", "Playlist")
                         .WithMany("PlaylistSongs")
@@ -307,7 +309,7 @@ namespace MusicAPIMVC.Migrations
                         .IsRequired();
 
                     b.HasOne("MusicAPIMVC.Models.Song", "Song")
-                        .WithMany("PlaylistItems")
+                        .WithMany("Playlists")
                         .HasForeignKey("SongId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -358,7 +360,7 @@ namespace MusicAPIMVC.Migrations
 
             modelBuilder.Entity("MusicAPIMVC.Models.Song", b =>
                 {
-                    b.Navigation("PlaylistItems");
+                    b.Navigation("Playlists");
                 });
 #pragma warning restore 612, 618
         }

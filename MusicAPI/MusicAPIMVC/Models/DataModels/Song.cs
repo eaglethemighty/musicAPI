@@ -19,7 +19,7 @@ namespace MusicAPIMVC.Models
         [ForeignKey("Album")]
         public int AlbumId { get; set; }
         public Album Album { get; set; }
-        public IList<PlaylistSong>? Playlists { get; set; }
+        public IList<PlaylistItem>? PlaylistItems { get; set; }
 
     }
 }

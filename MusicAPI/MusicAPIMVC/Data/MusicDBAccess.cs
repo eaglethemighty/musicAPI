@@ -14,7 +14,7 @@ namespace MusicAPIMVC.Data
         public DbSet<Album> Albums { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<Genre> Genres { get; set; }
-        public DbSet<PlaylistSong> PlaylistSongs { get; set; }
+        public DbSet<PlaylistItem> PlaylistSongs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
